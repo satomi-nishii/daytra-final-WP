@@ -23,10 +23,47 @@ body {
   background-image: url("../img/bg.png");
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
+@media screen and (min-width: 768px) {
+  body {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    background-size: contain;
+  }
+}
+
+/* contact form 7 iPhone用送信ボタンcssリセット
+-------------------- */
+input[type="submit"],
+input[type="button"] {
+  border-radius: 10px;
+  -webkit-box-sizing: content-box;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+       appearance: button;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+}
+
+input[type="submit"]::-webkit-search-decoration,
+input[type="button"]::-webkit-search-decoration {
+  display: none;
+}
+
+input[type="submit"]::focus,
+input[type="button"]::focus {
+  outline-offset: -2px;
+}
+
+/* ここまで */
 img {
   width: 100%;
 }
@@ -83,39 +120,21 @@ img {
   line-height: 1;
   -webkit-transition: .3s;
   transition: .3s;
-}
-
-.util-link.booking {
-  padding: 23px 30px;
-}
-
-.util-link.booking.archive {
   padding: 13px 20px;
 }
 
+.util-link.-medium {
+  padding: 23px 30px;
+}
+
 @media screen and (max-width: 767px) {
-  .util-link.booking {
+  .util-link.-medium {
     padding: 13px 20px;
   }
 }
 
-.util-link.detail {
-  padding: 13px 20px;
-}
-
-.util-link.inquiry {
-  padding: 23px 30px;
-  background-color: #603813;
-}
-
-@media screen and (max-width: 767px) {
-  .util-link.inquiry {
-    padding: 12px 20px;
-  }
-}
-
 .util-link:hover {
-  opacity: 0.8;
+  background-color: #161616;
 }
 
 /* breadcrumb
@@ -140,50 +159,35 @@ img {
 /* --------------------
 header
 -------------------- */
-@media screen and (max-width: 767px) {
-  .header {
-    height: 60px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .header-nav-list {
-    height: 90px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
+.header-nav-list {
+  overflow: auto;
+  white-space: nowrap;
+  padding: 25px 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
   .header-nav-list {
-    margin-top: 60px;
+    padding: 22px;
   }
 }
 
 .header-nav-item {
   text-align: center;
+  display: inline-block;
 }
 
-@media screen and (min-width: 768px) {
-  .header-nav-item:not(:first-child) {
-    margin-left: 30px;
-  }
+.header-nav-item:not(:first-child) {
+  margin-left: 30px;
 }
 
 @media screen and (max-width: 767px) {
   .header-nav-item:not(:first-child) {
-    margin-top: 30px;
+    margin-left: 2em;
   }
 }
 
-.header-nav-item-link {
+.header-nav-item a {
   color: #421F15;
   font-size: 12px;
   font-weight: 600;
@@ -192,14 +196,26 @@ header
   transition: .3s;
 }
 
-.header-nav-item-link span {
+@media screen and (max-width: 767px) {
+  .header-nav-item a {
+    font-size: 16px;
+  }
+}
+
+.header-nav-item a span {
   font-size: 22px;
   font-weight: 600;
   padding-top: 6px;
   display: block;
 }
 
-.header-nav-item-link:hover {
+@media screen and (max-width: 767px) {
+  .header-nav-item a span {
+    display: none;
+  }
+}
+
+.header-nav-item a:hover {
   opacity: 0.8;
 }
 
@@ -237,10 +253,6 @@ top
   .top-inner {
     padding: 40px 15px;
   }
-}
-
-.top-title {
-  height: 136px;
 }
 
 @media screen and (min-width: 768px) {
@@ -360,24 +372,44 @@ top
   }
 }
 
-.top-lower-title {
-  max-width: 450px;
+@media screen and (min-width: 768px) {
+  .top-lower-title {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 450px;
+            flex: 0 1 450px;
+  }
 }
 
-.top-lower-schedule {
-  max-width: 250px;
-  margin-left: 30px;
+@media screen and (max-width: 767px) {
+  .top-lower-title {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .top-lower-schedule {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 250px;
+            flex: 0 1 250px;
+    margin-left: 30px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .top-lower-schedule {
-    margin-top: 20px;
+    max-width: 250px;
+    margin: 20px auto 0;
   }
 }
 
 .top-lower-footer {
   margin-top: -20px;
   text-align: right;
+}
+
+.top-lower-footer .util-link {
+  padding: 13px 20px;
   position: relative;
 }
 
@@ -553,13 +585,15 @@ news
 @media screen and (max-width: 767px) {
   .news-item {
     width: 100%;
+    max-width: 570px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 @media screen and (min-width: 768px) {
   .news-item.news-item-2nd {
     width: calc(50% - 30px  / 2);
-    height: 88px;
     margin-right: 30px;
   }
   .news-item.news-item-2nd:nth-child(2n) {
@@ -609,16 +643,14 @@ news
 @media screen and (min-width: 768px) {
   .news-item-img.news-item-2nd {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 156px;
-            flex: 0 0 156px;
-    padding-top: 0;
+        -ms-flex: 0 0 40%;
+            flex: 0 0 40%;
+    padding-top: 30%;
   }
 }
 
 @media screen and (min-width: 768px) {
   .news-item-img.news-item-2nd img {
-    width: 156px;
-    height: 88px;
     -o-object-fit: cover;
        object-fit: cover;
   }
@@ -626,16 +658,14 @@ news
 
 .news-item-body {
   padding: 15px;
-  height: 120px;
   /* TOP下段のitemのスタイル */
 }
 
 @media screen and (min-width: 768px) {
   .news-item-body.news-item-2nd {
     -webkit-box-flex: 0;
-        -ms-flex: 0 1 100%;
-            flex: 0 1 100%;
-    height: 88px;
+        -ms-flex: 0 0 60%;
+            flex: 0 0 60%;
   }
 }
 
@@ -781,31 +811,38 @@ news
 
 @media screen and (max-width: 767px) {
   .news-item-content {
+    padding: 24px;
     font-size: 14px;
   }
 }
 
-.news-item-content h5 {
+.news-item-content h2 {
   font-size: 22px;
   font-weight: 600;
   line-height: 1.18182;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 767px) {
-  .news-item-content h5 {
+  .news-item-content h2 {
     font-size: 20px;
   }
 }
 
-.news-item-content h6 {
+.news-item-content h3 {
   font-size: 18px;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 767px) {
-  .news-item-content h6 {
+  .news-item-content h3 {
     font-size: 16px;
   }
+}
+
+.news-item-content p {
+  margin-bottom: 1rem;
 }
 
 /* pagenation（single）
@@ -827,6 +864,7 @@ news
 .page-meta.prev {
   position: relative;
   padding-left: 45px;
+  margin-right: 30px;
 }
 
 .page-meta.prev::before {
@@ -849,8 +887,9 @@ news
 }
 
 .page-meta.next {
+  display: block;
   text-align: right;
-  margin-left: 30px;
+  margin-left: auto;
   padding-right: 45px;
   position: relative;
 }
@@ -889,7 +928,6 @@ news
 story
 -------------------- */
 .story {
-  background-image: url("../img/story-1.png");
   background-position: 25% 20%;
   background-size: auto;
   background-repeat: no-repeat;
@@ -964,8 +1002,7 @@ story
 }
 
 .story-bg-inner {
-  background-image: url("../img/story-1.png");
-  background-position: center left -120%;
+  background-position: center left;
   background-size: auto;
   background-repeat: no-repeat;
   position: relative;
@@ -1028,7 +1065,6 @@ story
 }
 
 .story-content-wrap.-second {
-  background-image: url("../img/story-2.png");
   background-position: top right;
   background-size: auto;
   background-repeat: no-repeat;
@@ -1059,7 +1095,6 @@ story
 }
 
 .story-content-wrap.-third {
-  background-image: url("../img/story-3.png");
   background-position: center left;
   background-size: auto;
   background-repeat: no-repeat;
@@ -1090,7 +1125,6 @@ story
 }
 
 .story-content-wrap.-fourth {
-  background-image: url("../img/story-4.png");
   background-position: center right;
   background-size: auto;
   background-repeat: no-repeat;
@@ -1277,6 +1311,14 @@ comments
   }
 }
 
+@media screen and (max-width: 767px) {
+  .comments-card {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .comments-card-meta {
   text-align: center;
 }
@@ -1329,6 +1371,11 @@ cast
 }
 
 @media screen and (max-width: 767px) {
+  .cast-item {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .cast-item:not(first-child) {
     margin-top: 30px;
   }
@@ -1392,10 +1439,11 @@ cast
 .cast-footer .util-link {
   color: #c63205;
   background-color: initial;
+  border: 5px solid #c63205;
 }
 
-.cast-footer .util-link.detail {
-  border: 5px solid #c63205;
+.cast-footer .util-link:hover {
+  opacity: 0.8;
 }
 
 /* 以下キャスト一覧ページ（中段）のスタイル
@@ -1436,6 +1484,14 @@ cast
   }
   .cast-media:nth-child(2n) {
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cast-media {
+    max-width: 470px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -1570,12 +1626,15 @@ schedule
 
 .schedule-inner {
   background-color: rgba(255, 255, 255, 0.29);
-  padding: 30px 72px 45px;
+  padding: 30px 20px 45px;
+  text-align: center;
   position: relative;
 }
 
 @media screen and (max-width: 767px) {
   .schedule-inner {
+    max-width: 570px;
+    margin: 0 auto;
     padding: 30px 15px;
   }
 }
@@ -1617,6 +1676,8 @@ schedule
 .schedule-table a {
   color: #333;
   text-decoration: underline;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 .schedule-table a:hover {
@@ -1628,14 +1689,22 @@ schedule
   text-align: center;
 }
 
+.schedule-footer .util-link:first-child {
+  background-color: #603813;
+}
+
+.schedule-footer .util-link:first-child:hover {
+  background-color: #161616;
+}
+
 @media screen and (min-width: 768px) {
-  .schedule-footer .util-link.booking {
+  .schedule-footer .util-link:last-child {
     margin-left: 30px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .schedule-footer .util-link.booking {
+  .schedule-footer .util-link:last-child {
     margin-top: 15px;
   }
 }
@@ -1646,7 +1715,15 @@ inquiry
 .inquiry-form {
   background-color: rgba(255, 255, 255, 0.29);
   margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .inquiry-form {
+    max-width: 570px;
+  }
 }
 
 .inquiry-text {
@@ -1665,15 +1742,19 @@ inquiry
 }
 
 .inquiry-list input[type="text"],
+.inquiry-list input[type="tel"],
 .inquiry-list input[type="email"],
 .inquiry-list textarea {
   width: 100%;
   border: 0;
+  border-radius: 0;
   padding: .2em .5em;
+  font-family: inherit;
 }
 
 @media screen and (min-width: 768px) {
   .inquiry-list input[type="text"],
+  .inquiry-list input[type="tel"],
   .inquiry-list input[type="email"],
   .inquiry-list textarea {
     font-size: 18px;
@@ -1681,13 +1762,25 @@ inquiry
   }
 }
 
+@media screen and (max-width: 767px) {
+  .inquiry-list input[type="text"],
+  .inquiry-list input[type="tel"],
+  .inquiry-list input[type="email"],
+  .inquiry-list textarea {
+    font-size: 16px;
+    /* 入力域のフォントサイズ */
+  }
+}
+
 .inquiry-list input[type="text"],
+.inquiry-list input[type="tel"],
 .inquiry-list input[type="email"] {
   height: 45px;
 }
 
 @media screen and (max-width: 767px) {
   .inquiry-list input[type="text"],
+  .inquiry-list input[type="tel"],
   .inquiry-list input[type="email"] {
     height: 40px;
   }
@@ -1726,6 +1819,9 @@ input:-webkit-autofill {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
@@ -1777,50 +1873,59 @@ input:-webkit-autofill {
 }
 
 .inquiry-footer .util-link {
-  background-color: #B2B2B2;
   font-size: 18px;
-  font-weight: 600;
   padding: 21px 82px;
-}
-
-.inquiry-footer .util-link:hover {
-  opacity: 1;
-}
-
-.inquiry-footer .util-link.-active {
-  background-color: #c63205;
-  color: #fff;
-}
-
-.inquiry-footer .util-link.-active:hover {
-  opacity: 0.8;
+  border-style: none;
+  border-radius: 0;
 }
 
 @media screen and (max-width: 767px) {
   .inquiry-footer .util-link {
     width: 100%;
+    max-width: 375px;
   }
 }
 
-.inquiry-message {
+.thanks-message {
   font-weight: 600;
   line-height: 1.66667;
   text-align: center;
-  display: none;
+  margin-top: 30px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.29);
 }
 
 @media screen and (min-width: 768px) {
-  .inquiry-message {
+  .thanks-message {
     font-size: 18px;
   }
 }
 
-.inquiry-message.-error {
-  color: #f00;
+@media screen and (max-width: 767px) {
+  .thanks-message {
+    margin-top: 40px;
+  }
 }
 
-.news.is-inquiry {
-  display: none;
+/* 以下contact form 7のスタイル変更
+-------------------- */
+.wpcf7-not-valid-tip {
+  /* 必須項目入力確認 */
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+  .wpcf7-not-valid-tip {
+    font-size: 14px;
+  }
+}
+
+.wpcf7-response-output {
+  /* アラートメッセージ */
+  margin-top: 30px;
+  text-align: center;
+  font-weight: 600;
 }
 
 /* --------------------
@@ -1852,6 +1957,7 @@ footer
   font-weight: 600;
   line-height: 1.66667;
   text-align: center;
+  margin-bottom: 60px;
   padding: 60px 30px;
 }
 

@@ -14,23 +14,22 @@
 
 </head>
 
-<body class="drawer drawer--right">
+<body>
 
     <!-- .header -->
     <header class="header container">
-        <button type="button" class="drawer-toggle drawer-hamburger is-sp">
-            <span class="sr-only">toggle navigation</span>
-            <span class="drawer-hamburger-icon"></span>
-        </button>
         <nav class="drawer-nav header-nav">
-            <ul class="drawer-menu header-nav-list">
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#top">トップ<br><span>TOP</span></a></li>
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#news">ニュース<br><span>NEWS</span></a></li>
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#story">ストーリー<br><span>STORY</span></a></li>
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#comments">著名人コメント<br><span>COMMENTS</span></a></li>
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#cast">キャスト<br><span>CAST</span></a></li>
-                <li class="header-nav-item"><a class="header-nav-item-link" href="#inquiry">問い合わせ<br><span>INQUIRY</span></a></li>
-            </ul>
+        <?php
+            wp_nav_menu(
+                //.header-listを置き換えて、PC用メニューを動的に表示する
+                array(
+                    'depth' => 1,
+                    'theme_location' => 'global', //グローバルメニューをここに表示すると指定
+                    'container' => 'false',
+                    'menu_class' => 'header-nav-list',
+                )
+            );
+        ?>
         </nav>
     </header>
     <!-- /.header -->
