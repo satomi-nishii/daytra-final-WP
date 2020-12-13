@@ -1926,6 +1926,7 @@ input:-webkit-autofill {
   margin-top: 30px;
   text-align: center;
   font-weight: 600;
+  border: none !important;
 }
 
 /* --------------------

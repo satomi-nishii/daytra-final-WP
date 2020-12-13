@@ -1,7 +1,11 @@
         <!-- .news -->
         <section class="news container section">
             <div class="news-header">
-                <h2 class="util-title wow fadeInUp">NEWS</h2>
+                <?php if (is_front_page()) {
+                    echo '<h2 class="util-title wow fadeInUp">NEWS</h2>';
+                } else {
+                    echo '<h2 class="util-title wow fadeInUp">LATEST NEWS</h2>';
+                } ?>
                 <a href="https://daytra3rd-final.stm241.com/news/" class="util-link wow fadeInUp">ニュース一覧へ</a>
             </div>
 
